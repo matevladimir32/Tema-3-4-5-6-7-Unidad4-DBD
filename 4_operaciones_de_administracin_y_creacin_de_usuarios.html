@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_effects.css" />
+<link rel="stylesheet" type="text/css" href="exe_highlighter.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>4. Operaciones de Administración y Creación de Usuarios | Creación, Modificación, Eliminación, Consulta, Operaciones de Administración y Creación de Usuarios </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Eduvirtual UNAB" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_effects.js"></script>
+<script type="text/javascript" src="exe_highlighter.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-4"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Creación, Modificación, Eliminación, Consulta, Operaciones de Administración y Creación de Usuarios</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Inicio</a></li>
+   <li><a href="1_introduccin.html" class="no-ch">1. Introducción</a></li>
+   <li><a href="2_introduccin_a_mongodb.html" class="no-ch">2. Introducción a MongoDB</a></li>
+   <li><a href="3_creacin_modificacin_eliminacin_y_consulta_de_documentos.html" class="no-ch">3. Creación, Modificación, Eliminación y Consulta de Documentos</a></li>
+   <li id="active"><a href="4_operaciones_de_administracin_y_creacin_de_usuarios.html" class="active no-ch">4. Operaciones de Administración y Creación de Usuarios</a></li>
+   <li><a href="5_conclusiones_y_referencias.html" class="no-ch">5. Conclusiones y Referencias</a></li>
+   <li><a href="6_repasando.html" class="no-ch">6. Repasando</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="3_creacin_modificacin_eliminacin_y_consulta_de_documentos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="5_conclusiones_y_referencias.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">4. Operaciones de Administración y Creación de Usuarios</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id8">
+<div class="iDevice emphasis0">
+<div id="ta8_86" class="block iDevice_content">
+<p><img src="4.png" alt="" width="4044" height="1024" /></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id9">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">Contenido</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta9_122_2" class="block iDevice_content">
+<div class="exe-text"><p style="text-align: justify;"><img src="mongodb-icon-1.svg" width="50" height="50" style="float: left; margin-right: 10px; margin-left: 10px;" />Así como con las bases de datos SQL en MongoDB también puedes crear usuarios y asignarles acceso mediante roles, en este tutorial te voy a enseñar cómo crear un usuario y asignarle un rol para que tenga ciertos accesos limitados a una base de datos.</p>
+<div class="exe-fx exe-paginated">
+<h2>Practica</h2>
+<p style="text-align: justify;">Se pretende generar dos usuarios para una base de datos:</p>
+<ul style="text-align: justify;">
+<li>El primer usuario deberá llamarse lector y solo tendrá acceso de lectura a la base de datos.</li>
+<li style="text-align: justify;">El segundo usuario tendrá como nombre escritor y tendrá acceso de lectura y escritura a la base de datos.</li>
+</ul>
+<p style="text-align: justify;">Asumiendo que ya se cuenta con la instalación de MongoDB, lo primero será crear la base de datos. Una vez en el shell de mongo creamos la base de datos:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>use blog</code></pre>
+</div>
+</div>
+<p style="text-align: justify;">Ahora insertamos un par de documentos en la colleción posts</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>db.posts.insertOne({ title: "Articulo 1" });
+db.posts.insertOne({ title: "Articulo 2" });</code></pre>
+</div>
+</div>
+<h2>Pasos para crear un usuario de solo lectura</h2>
+<p style="text-align: justify;">Ahora vamos a cumplir nuestra primera tarea de crear un usuario que solo pueda leer los posts, pero bajo ningún motivo pueda crear nuevos artículos. Para lograr esto vamos a usar el método createUser. Este método acepta como parámetro un objeto con las siguientes propiedades:</p>
+<ul style="text-align: justify;">
+<li>user: Esta propiedad representa el nombre del usuario, en nuestro caso le asignaremos lector</li>
+<li>pwd: Acá asignaremos la contraseña para el usuario.</li>
+<li>roles: Un arreglo de objetos. Acepta un arreglo para el caso que tu usuario vaya a tener acceso a múltiples bases de datos.</li>
+</ul>
+<p style="text-align: justify;">El código quedaría de la siguiente manera:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>db.createUser(
+  {
+    user: "lector",
+    pwd: "123456",
+    roles: [
+       { role: "read", db: "blog" }
+    ]
+  }
+)</code></pre>
+</div>
+</div>
+<p style="text-align: justify;">Mongo viene con roles predefinidos, uno de ellos es el role <strong>read </strong>que como ya te debes imaginar solo permite ejecutar métodos de solo lectura. La propiedad <strong>db </strong>es donde vas a indicar a qué base de datos se le asignará dicho rol.</p>
+<h2 style="text-align: justify;">Creando un usuario de escritura y lectura</h2>
+<p style="text-align: justify;">Ahora vamos con el segundo usuario, el proceso sería el mismo, pero en este caso el role ya no será read sino readWrite. Con este rol el usuario tendrá acceso a los métodos de lectura y escritura de la base de datos.</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>db.createUser(
+  {
+    user: "escritor",
+    pwd: "123456",
+    roles: [
+       { role: "readWrite", db: "blog" }
+    ]
+  }
+)</code></pre>
+</div>
+</div>
+<p style="text-align: justify;">Con esto ya se tienen los dos usuarios.</p>
+<h2 style="text-align: justify;">Pruebas para verificar que cada usuario cuenta con los accesos correctos</h2>
+<p style="text-align: justify;">Para poder ingresar al shell de mongo con el usuario usaremos los parámetros -u y -p. En la terminal escribe lo siguiente:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>mongo -u lector -p 123456</code></pre>
+</div>
+</div>
+<p>Primero verificamos si puede leer los posts</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>use blog;
+db.posts.find();</code></pre>
+</div>
+</div>
+<p style="text-align: justify;">Se obtiene la respuesta correctamente mostrando los dos documentos insertados anteriormente:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>{ "_id" : ObjectId("5e438449ea91620ed74d3cf3"), "title" : "Articulo 1" }
+{ "_id" : ObjectId("5e43844cea91620ed74d3cf4"), "title" : "Articulo 2" }</code></pre>
+</div>
+</div>
+<p>Ahora intentaremos insertar un nuevo documento:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>db.posts.insertOne({ title: "Articulo 3" });</code></pre>
+</div>
+</div>
+<p>Debería lanzarnos un error parecido al siguiente:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>{
+  "errmsg" : "not authorized on blog to execute command" # mensaje cortado por temas de espacio
+  "codeName" : "Unauthorized"
+}</code></pre>
+</div>
+</div>
+<p style="text-align: justify;">Listo, ahora hagamos el mismo proceso para el usuario escritor, primero debemos salir del shell y volver a loguearnos:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>mongo -u escritor -p 123456 --authenticationDatabase blog</code></pre>
+</div>
+</div>
+<p>Leemos los posts usando el método find:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>db.posts.find();
+# { "_id" : ObjectId("5e438449ea91620ed74d3cf3"), "title" : "Articulo 1" }
+# { "_id" : ObjectId("5e43844cea91620ed74d3cf4"), "title" : "Articulo 2" }</code></pre>
+</div>
+</div>
+<p>Funciona bien el permiso de lectura, ahora intentaremos insertar el Artículo #3:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>db.posts.insertOne({ title: "Articulo 3" });</code></pre>
+</div>
+</div>
+<p>Nos devuelve información del nuevo documento registrado:</p>
+<div class="highlighted-code code-style-2 language-sql">
+<div>
+<pre><code>{
+  "acknowledged" : true,
+  "insertedId" : ObjectId("5e4385e6e2306e7554d9e60f")
+}</code></pre>
+</div>
+</div>
+</div>
+<p style="text-align: justify;"></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="3_creacin_modificacin_eliminacin_y_consulta_de_documentos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="5_conclusiones_y_referencias.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>

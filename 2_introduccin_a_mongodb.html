@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_effects.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>2. Introducción a MongoDB | Creación, Modificación, Eliminación, Consulta, Operaciones de Administración y Creación de Usuarios </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Eduvirtual UNAB" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.6 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_effects.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-2"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Creación, Modificación, Eliminación, Consulta, Operaciones de Administración y Creación de Usuarios</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Inicio</a></li>
+   <li><a href="1_introduccin.html" class="no-ch">1. Introducción</a></li>
+   <li id="active"><a href="2_introduccin_a_mongodb.html" class="active no-ch">2. Introducción a MongoDB</a></li>
+   <li><a href="3_creacin_modificacin_eliminacin_y_consulta_de_documentos.html" class="no-ch">3. Creación, Modificación, Eliminación y Consulta de Documentos</a></li>
+   <li><a href="4_operaciones_de_administracin_y_creacin_de_usuarios.html" class="no-ch">4. Operaciones de Administración y Creación de Usuarios</a></li>
+   <li><a href="5_conclusiones_y_referencias.html" class="no-ch">5. Conclusiones y Referencias</a></li>
+   <li><a href="6_repasando.html" class="no-ch">6. Repasando</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="1_introduccin.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="3_creacin_modificacin_eliminacin_y_consulta_de_documentos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">2. Introducción a MongoDB</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id4">
+<div class="iDevice emphasis0">
+<div id="ta4_86" class="block iDevice_content">
+<p><img src="2.png" alt="" width="4044" height="1024" /></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id5">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">Contenido</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta5_118_2" class="block iDevice_content">
+<div class="exe-text"><p style="text-align: justify;">MongoDB es una Base de Datos NoSQL orientada a documentos en formato BSON. El formato BSON es una representación binaria de estructuras de datos y mapas. El nombre BSON está basado en el término JSON y significa Binary JSON. Al tener ya una manipulación de bases de datos relacionales pueda que la introducción a NoSQL sea un poco confuso, al igual que cuando se inició el aprendizaje de modelamiento relacional con conceptos básico como tabla, campos, relaciones, etc. Tambien se deben conocer algunos conceptos básicos de NoSQL como:</p>
+<div class="exe-fx exe-paginated">
+<h2>Colección</h2>
+<p style="text-align: justify;">Conjunto de documentos. Similar con las tablas del modelo relacional, pero no tiene esquema, por lo que cada documento de una colección puede tener diferentes campos. Cada documento dentro de una colección tiene un identificador único SIEMPRE.</p>
+<h2>Documento</h2>
+<p>Conjunto de pares campo-valor. Similar a las filas en relacional.</p>
+<ol>
+<li>No siguen un esquema de tabla pre-definido: pueden tener tantos campos como se desee. Se almacena el nombre del campo junto a su valor.</li>
+<li>No hay valores nulos: o el campo está, o no está (aunque existe un tipo de dato denominado nulo).</li>
+<li>Pueden contener otros documentos (jerarquía de documentos).</li>
+</ol>
+<h2>Campos</h2>
+<p>Campos de un documento a los que se les asigna valor y sobre los que se pueden crear índices. Similar a las columnas en relacional.</p>
+<p>id: campo especial que identifica a cada documento en una colección. Si no se le da valor en el insertado, se genera automáticamente.</p>
+</div>
+<p style="text-align: justify;"><strong>Ejemplos:</strong></p>
+<div class="exe-fx exe-paginated">
+<h2>Ejemplo de documento</h2>
+<p><img src="db1.png" width="651" height="303" style="display: block; margin-left: auto; margin-right: auto;" /></p>
+<h2>Ejemplo de colección</h2>
+<p><img src="db2.png" width="600" height="351" style="display: block; margin-left: auto; margin-right: auto;" /></p>
+</div>
+<p style="text-align: justify;"></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="1_introduccin.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="3_creacin_modificacin_eliminacin_y_consulta_de_documentos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_adultos_js.js"></script></body></html>
